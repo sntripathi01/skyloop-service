@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.skyloop.service.controller")
+@ComponentScan("com.skyloop.service.controller, com.skyloop.service.impl, com.skyloop.db.dao.impl")
 public class SkyloopService {
 
 	public static void main(String[] args) {
