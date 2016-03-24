@@ -1,4 +1,4 @@
-package com.skyloop.app;
+package com.skyloop;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.skyloop.service.controller, com.skyloop.service.impl, com.skyloop.db.dao.impl")
+@ComponentScan("com.skyloop.service.controller, com.skyloop.service.impl, com.skyloop.db.dao.impl,com.skyloop.service.validator")
 public class SkyloopService {
 
 	public static void main(String[] args) {
