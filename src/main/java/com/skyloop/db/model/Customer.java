@@ -2,9 +2,16 @@ package com.skyloop.db.model;
 
 import java.util.Date;
 
-public class Customer {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	private String id;
+@Entity
+public class Customer {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String customerType;
 	private String firstName;
 	private String middlename;
@@ -20,14 +27,7 @@ public class Customer {
 	private Date createdDate;
 	private Date modifiedDate;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
+	
 	public String getCustomerType() {
 		return customerType;
 	}
@@ -138,6 +138,14 @@ public class Customer {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }
