@@ -2,12 +2,15 @@ package com.skyloop.db.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,16 +21,18 @@ public class Customer {
 	private String lastName;
 	private String email;
 	private String mobile;
-	private String landLine;
 	private String address;
-	private String prin;
+	private String pincode;
 	private String city;
-	private String state;
-	private String country;
-	private Date createdDate;
-	private Date modifiedDate;
 
-	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getCustomerType() {
 		return customerType;
 	}
@@ -76,14 +81,6 @@ public class Customer {
 		this.mobile = mobile;
 	}
 
-	public String getLandLine() {
-		return landLine;
-	}
-
-	public void setLandLine(String landLine) {
-		this.landLine = landLine;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -92,12 +89,12 @@ public class Customer {
 		this.address = address;
 	}
 
-	public String getPrin() {
-		return prin;
+	public String getPincode() {
+		return pincode;
 	}
 
-	public void setPrin(String prin) {
-		this.prin = prin;
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 	public String getCity() {
@@ -124,6 +121,22 @@ public class Customer {
 		this.country = country;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(String delStatus) {
+		this.delStatus = delStatus;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -140,12 +153,29 @@ public class Customer {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public long getId() {
-		return id;
+	public Date getActivatedDate() {
+		return activatedDate;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setActivatedDate(Date activatedDate) {
+		this.activatedDate = activatedDate;
 	}
+
+	public Date getDeletedDate() {
+		return deletedDate;
+	}
+
+	public void setDeletedDate(Date deletedDate) {
+		this.deletedDate = deletedDate;
+	}
+
+	private String state;
+	private String country;
+	private String status;
+	private String delStatus;
+	private Date createdDate;
+	private Date modifiedDate;
+	private Date activatedDate;
+	private Date deletedDate;
 
 }

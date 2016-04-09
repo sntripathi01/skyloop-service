@@ -20,7 +20,6 @@ public class ServiceMapper {
 		customerDb.setMiddlename(customer.getMiddlename());
 		customerDb.setLastName(customer.getLastName());
 		customerDb.setMobile(customer.getMobile());
-		customerDb.setLandLine(customer.getLandLine());
 		customerDb.setCreatedDate(customer.getCreatedDate());
 		customerDb.setModifiedDate(customer.getModifiedDate());
 		return customerDb;
@@ -42,7 +41,6 @@ public class ServiceMapper {
 		customerRespnse.setMiddlename(customerDb.getMiddlename());
 		customerRespnse.setLastName(customerDb.getLastName());
 		customerRespnse.setMobile(customerDb.getMobile());
-		customerRespnse.setLandLine(customerDb.getLandLine());
 		customerRespnse.setCreatedDate(customerDb.getCreatedDate());
 		customerRespnse.setModifiedDate(customerDb.getModifiedDate());
 		return customerRespnse;

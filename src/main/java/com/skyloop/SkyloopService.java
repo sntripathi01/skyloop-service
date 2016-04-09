@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.skyloop.service.controller, com.skyloop.service.impl, com.skyloop.db.dao.impl,com.skyloop.service.validator,com.skyloop, com.skyloop.db.repository")
-@EnableJpaRepositories("com.skyloop.db.repository")
+@ComponentScan//("com.skyloop.service.controller, com.skyloop.service.impl, com.skyloop.db.dao.impl,com.skyloop.service.validator,com.skyloop, com.skyloop.db.repository")
+@EnableJpaRepositories//("com.skyloop.db.repository")
 public class SkyloopService {
 
 	public static void main(String[] args) {
