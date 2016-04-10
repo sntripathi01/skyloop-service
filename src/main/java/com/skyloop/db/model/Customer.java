@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "customer")
@@ -21,6 +22,7 @@ public class Customer {
 	private long id;
 	@Column(unique = true)
 	private String customerUserId;
+	private long customerRoleId;
 	private String password;
 	private String customerType;
 	private String firstName;
@@ -45,6 +47,13 @@ public class Customer {
 	private Date deletedDate;
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<User> user;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Order> orders;
+
+	@ManyToOne
+	@JoinColumn(name = "customerRoleId", insertable = false, updatable = false)
+	private CustomerRole customerRole;
 
 	public long getId() {
 		return id;
@@ -212,6 +221,30 @@ public class Customer {
 
 	public void setUser(Set<User> user) {
 		this.user = user;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+	public long getCustomerRoleId() {
+		return customerRoleId;
+	}
+
+	public void setCustomerRoleId(long customerRoleId) {
+		this.customerRoleId = customerRoleId;
+	}
+
+	public CustomerRole getCustomerRole() {
+		return customerRole;
+	}
+
+	public void setCustomerRole(CustomerRole customerRole) {
+		this.customerRole = customerRole;
 	}
 
 }

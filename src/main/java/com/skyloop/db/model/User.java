@@ -1,7 +1,9 @@
 package com.skyloop.db.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +20,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
+	private long userRoleId;
 	private long customerId;
 	private String firstName;
 	private String middlename;
@@ -41,6 +44,13 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "customerId", insertable = false, updatable = false)
 	private Customer customer;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Order> orders;
+
+	@ManyToOne
+	@JoinColumn(name = "userRoleId", insertable = false, updatable = false)
+	private UserRole userRole;
 
 	public long getId() {
 		return id;
@@ -192,6 +202,30 @@ public class User {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+	public long getUserRoleId() {
+		return userRoleId;
+	}
+
+	public void setUserRoleId(long userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }
