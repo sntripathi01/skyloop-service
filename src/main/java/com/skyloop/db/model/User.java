@@ -2,37 +2,60 @@ package com.skyloop.db.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
-	private String id;
-	private String customerID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+	private long customerId;
 	private String firstName;
 	private String middlename;
 	private String lastName;
 	private String email;
+	@Column(unique = true)
 	private String mobile;
-	private String landLine;
 	private String address;
-	private String prin;
+	private int pinCode;
 	private String city;
 	private String state;
 	private String country;
+	@Column(columnDefinition = "tinyint(1) default 0")
+	private boolean status;
+	@Column(columnDefinition = "tinyint(1) default 0")
+	private boolean delStatus;
 	private Date createdDate;
 	private Date modifiedDate;
+	private Date activatedDate;
+	private Date deletedDate;
+	@ManyToOne
+	@JoinColumn(name = "customerId", insertable = false, updatable = false)
+	private Customer customer;
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getCustomerID() {
-		return customerID;
+	public long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getFirstName() {
@@ -75,14 +98,6 @@ public class User {
 		this.mobile = mobile;
 	}
 
-	public String getLandLine() {
-		return landLine;
-	}
-
-	public void setLandLine(String landLine) {
-		this.landLine = landLine;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -91,12 +106,12 @@ public class User {
 		this.address = address;
 	}
 
-	public String getPrin() {
-		return prin;
+	public int getPinCode() {
+		return pinCode;
 	}
 
-	public void setPrin(String prin) {
-		this.prin = prin;
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
 	}
 
 	public String getCity() {
@@ -123,6 +138,22 @@ public class User {
 		this.country = country;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public boolean isDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(boolean delStatus) {
+		this.delStatus = delStatus;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -137,6 +168,30 @@ public class User {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	public Date getActivatedDate() {
+		return activatedDate;
+	}
+
+	public void setActivatedDate(Date activatedDate) {
+		this.activatedDate = activatedDate;
+	}
+
+	public Date getDeletedDate() {
+		return deletedDate;
+	}
+
+	public void setDeletedDate(Date deletedDate) {
+		this.deletedDate = deletedDate;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

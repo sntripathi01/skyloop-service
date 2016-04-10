@@ -1,13 +1,17 @@
 package com.skyloop.db.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "customer")
@@ -15,15 +19,32 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(unique = true)
+	private String customerUserId;
+	private String password;
 	private String customerType;
 	private String firstName;
 	private String middlename;
 	private String lastName;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String mobile;
 	private String address;
-	private String pincode;
+	private int pinCode;
 	private String city;
+	private String state;
+	private String country;
+	@Column(columnDefinition = "tinyint(1) default 0")
+	private boolean status;
+	@Column(columnDefinition = "tinyint(1) default 0")
+	private boolean delStatus;
+	private Date createdDate;
+	private Date modifiedDate;
+	private Date activatedDate;
+	private Date deletedDate;
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	private Set<User> user;
 
 	public long getId() {
 		return id;
@@ -31,6 +52,22 @@ public class Customer {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getCustomerUserId() {
+		return customerUserId;
+	}
+
+	public void setCustomerUserId(String customerUserId) {
+		this.customerUserId = customerUserId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCustomerType() {
@@ -89,12 +126,12 @@ public class Customer {
 		this.address = address;
 	}
 
-	public String getPincode() {
-		return pincode;
+	public int getPinCode() {
+		return pinCode;
 	}
 
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
 	}
 
 	public String getCity() {
@@ -121,19 +158,19 @@ public class Customer {
 		this.country = country;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
-	public String getDelStatus() {
+	public boolean isDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(String delStatus) {
+	public void setDelStatus(boolean delStatus) {
 		this.delStatus = delStatus;
 	}
 
@@ -169,13 +206,12 @@ public class Customer {
 		this.deletedDate = deletedDate;
 	}
 
-	private String state;
-	private String country;
-	private String status;
-	private String delStatus;
-	private Date createdDate;
-	private Date modifiedDate;
-	private Date activatedDate;
-	private Date deletedDate;
+	public Set<User> getUser() {
+		return user;
+	}
+
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
 
 }
